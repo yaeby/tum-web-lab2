@@ -9,7 +9,7 @@ Monzza Group specializes in high-quality car photography, showcasing automotive 
 ## 🌍 Live Demo
 
 Check out the live version of the landing page here:
-[**Live Demo**](#) 
+[**Live Demo**](https://yaeby.github.io/tum-web-lab2/) 
 
 ## 📸 Screenshots
 
