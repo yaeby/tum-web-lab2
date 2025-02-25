@@ -1,1 +1,21 @@
-/* add your CSS here */
+html
+{
+    font-size: 10px !important;
+}
+
+body
+{
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    font-style: normal;
+
+    color: #fff;
+    background: #0c0c0c;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+body.contains-hero
+{
+    padding-top: 100vh;
+}
