@@ -481,6 +481,7 @@ a:hover
 .portfolio
 {
     padding: 0 30px;
+    margin-top: 100px;
 }
 
 .portfolio .item
@@ -645,6 +646,7 @@ a:hover
     padding: 0;
 
     list-style: none;
+    text-align: center;
 }
 
 .about .social-links li
