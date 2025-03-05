@@ -194,7 +194,13 @@ jQuery(document).ready(function($) {
 		
 	}
 	
-	onScrollAnimating();
+	onScrollAnimating();    
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const speedometer = document.querySelector('.speedometer-container');
     
-    
+    setTimeout(() => {
+        speedometer.style.opacity = 1;
+    }, 2000);
 });
