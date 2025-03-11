@@ -1,0 +1,35 @@
+:root {
+    /* Color variables */
+    --primary-bg: #0c0c0c;
+    --text-color: #fff;
+    --accent-color: #fff;
+    --input-bg: #1a1a1a;
+    --input-border: #333;
+  }
+  
+  html {
+    font-size: 10px !important;
+  }
+  
+  body {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color);
+    background: var(--primary-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Preloader animation */
+  @keyframes spinner-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+  }
+  
+  /* Mobile menu transitions */
+  .mobile-nav-overlay {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* Keeping footer styles consistent */
+  .footer p a {
+    font-weight: bold;
+  }
