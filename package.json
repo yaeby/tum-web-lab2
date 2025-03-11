@@ -1,0 +1,30 @@
+{
+  "name": "tum-web-lab2",
+  "version": "1.0.0",
+  "description": "Web project with Tailwind CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css",
+    "watch:css": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch",
+    "start": "npm run watch:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaeby/tum-web-lab2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yaeby/tum-web-lab2/issues"
+  },
+  "homepage": "https://github.com/yaeby/tum-web-lab2#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.3.0"
+  }
+}

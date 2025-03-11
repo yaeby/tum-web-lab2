@@ -1,51 +1,51 @@
-jQuery(window).on('load', function() {
-        
+window.addEventListener('load', function() {
     // HIDE PRELAODER
-    $(".preloader").addClass("preloader-hidden");
+    document.querySelector(".preloader").classList.add("preloader-hidden");
 
     // SHOW/ANIMATE ANIMATION CONTAINER
     setTimeout(function(){
-
-        $(".hero .animation-container").each(function(){
-
-            var e = $(this);
-
+        document.querySelectorAll(".hero .animation-container").forEach(function(element){
             setTimeout(function(){
-
-                e.addClass("run-animation");
-
-            }, e.data("animation-delay") );
-
+                element.classList.add("run-animation");
+            }, element.dataset.animationDelay);
         });
-
-    }, 900 );
-
+    }, 900);
 });
 
-
-jQuery(document).ready(function($) {
-	"use strict";
+document.addEventListener('DOMContentLoaded', function() {
+    "use strict";
     
-    
-    // INIT PARALLAX PLUGIN
-    $(".hero .background-content.parallax-on").parallax({
-        scalarX: 24,
-        scalarY: 15,
-        frictionX: 0.1,
-        frictionY: 0.1,
-    });
-    
+    // REPLACE PARALLAX PLUGIN
+    const parallaxElements = document.querySelectorAll(".hero .background-content.parallax-on");
+    if (parallaxElements.length > 0) {
+        window.addEventListener('mousemove', function(e) {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            parallaxElements.forEach(function(element) {
+                const moveX = ((mouseX - windowWidth / 2) / windowWidth) * 24;
+                const moveY = ((mouseY - windowHeight / 2) / windowHeight) * 15;
+                
+                element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                element.style.transition = 'transform 0.1s ease-out';
+            });
+        });
+    }
     
     // SCROLL TOP BUTTON
-    $(".scroll-top").click(function() {
-        
-      $("html, body").animate({ scrollTop: 0 }, 400);
-      return false;
-        
+    document.querySelectorAll(".scroll-top").forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     });
     
-    
-    // SCROLL REVEAL SETUP
+    // SCROLL REVEAL SETUP - Keep this as it's a separate library
     window.sr = ScrollReveal();
     sr.reveal(".scroll-animated-from-bottom", { 
         duration: 600,
@@ -59,148 +59,120 @@ jQuery(document).ready(function($) {
         useDelay: 'onload',
     });
     
+    // IMAGE CAROUSEL - Basic Vanilla JS Implementation
+    const setupCarousels = function() {
+        document.querySelectorAll('.image-carousel').forEach(function(carousel) {
+            const items = Array.from(carousel.children);
+            let currentIndex = 0;
+            
+            // Prepare carousel
+            items.forEach((item, index) => {
+                item.style.position = 'absolute';
+                item.style.transition = 'opacity 0.5s ease-in-out';
+                item.style.opacity = index === 0 ? '1' : '0';
+                item.style.zIndex = index === 0 ? '1' : '0';
+            });
+            
+            // Auto rotation
+            setInterval(() => {
+                items[currentIndex].style.opacity = '0';
+                items[currentIndex].style.zIndex = '0';
+                currentIndex = (currentIndex + 1) % items.length;
+                items[currentIndex].style.opacity = '1';
+                items[currentIndex].style.zIndex = '1';
+            }, 3000);
+        });
+    };
     
-    // IMAGE CAROUSEL
-    $('.image-carousel').owlCarousel({
-        center: true,
-        items: 1,
-        loop: true,
-        margin: 0,
-        autoplay: true,
-        responsive:{
-            800:{
-                items: 2,
-            },
-        }
-    });
-    
+    setupCarousels();
     
     // HERO/BUTTON ON SCROLL ANIMATING
     function onScrollAnimating() {
-		
-		var windowHeight = $( ".hero" ).height(),
-            frontContent = $(".hero .front-content"),
-            backContent = $(".hero .background-content"),
-            navigationButton = $( ".navigation-button" ),
-			scrollOffset,
-			calculatedOpacityFrontContent,
-			calculatedScaleFrontContent,
-			calculatedTranslateHeader,
-			calculatedOpacityBackground;
+        const hero = document.querySelector(".hero");
+        const windowHeight = hero ? hero.offsetHeight : 0;
+        const frontContent = document.querySelector(".hero .front-content");
+        const backContent = document.querySelector(".hero .background-content");
+        const navigationButton = document.querySelector(".navigation-button");
+        let scrollOffset;
+        let calculatedOpacityFrontContent;
+        let calculatedScaleFrontContent;
+        let calculatedTranslateHeader;
+        let calculatedOpacityBackground;
         
-		
-		function navigationButtonHide() {
-			
-			if ( calculatedTranslateHeader <= 200 ) {
-                
-			    navigationButton.css( "transform", "translateX(" + calculatedTranslateHeader + "%) translateY(-50%)");
-
-			} else if ( scrollOffset > windowHeight ) {
-                
-			    navigationButton.css( "transform", "translateX(200%) translateY(-50%)");
-				
-			}
-		}
-		
-		function frontContentMargin() {
-			
-			if ( scrollOffset <= windowHeight ) {
-
-				frontContent.css( "margin-top", scrollOffset );
-
-			} else if ( scrollOffset > windowHeight ) {
-				
-				frontContent.css( "margin-top", windowHeight );
-				
-			}
-			
-		}
-		
-		function frontContentOpacity() {
-			
-			if ( calculatedOpacityFrontContent >= 0 ) {
-
-				frontContent.css( "opacity", calculatedOpacityFrontContent);
-
-			} else if ( scrollOffset > windowHeight ) {
-				
-				frontContent.css( "opacity", "0");
-				
-			}
-		}
-		
-		function frontContentScale() {
-			
-			if ( calculatedScaleFrontContent >= 0.4 ) {
-				
-				frontContent.css( "transform", "scale(" + calculatedScaleFrontContent + ")");
-
-			} else if ( scrollOffset > windowHeight ) {
-				
-				frontContent.css( "transform", "scale(0.6)");
-				
-			}
-			
-		}
-		
-		function backgroundOpacity() {
-			
-			if ( calculatedOpacityBackground >= 0 ) {
-
-				backContent.css( "opacity", calculatedOpacityBackground );
-
-			} else if ( scrollOffset > windowHeight ) {
-				
-				backContent.css( "opacity", "0" );
-				
-			}
-			
-		}
-		
-		function runStep() {
-			
-			scrollOffset = $( window ).scrollTop();
-            
-            if(windowHeight > scrollOffset && scrollOffset >= 0) {
-			
-                calculatedTranslateHeader = ( scrollOffset / windowHeight) * 650;
-                calculatedOpacityFrontContent = 1 - ( scrollOffset / windowHeight) * 4.2;
-                calculatedScaleFrontContent = 1 - ( scrollOffset / windowHeight) * 1.2;
-                calculatedOpacityBackground = 1 - ( scrollOffset / windowHeight) * 1.4;
-
-                navigationButtonHide();
-                frontContentMargin();
-                frontContentOpacity();
-                frontContentScale();
-                backgroundOpacity();
-                
+        function navigationButtonHide() {
+            if (calculatedTranslateHeader <= 200) {
+                navigationButton.style.transform = `translateX(${calculatedTranslateHeader}%) translateY(-50%)`;
+            } else if (scrollOffset > windowHeight) {
+                navigationButton.style.transform = "translateX(200%) translateY(-50%)";
             }
-			
-		}
-		
-		$( window ).on( 'resize', function(){
-
-			windowHeight = $( ".hero" ).height();
-
-		});
-
-		$( window ).scroll(function() {
+        }
+        
+        function frontContentMargin() {
+            if (scrollOffset <= windowHeight) {
+                frontContent.style.marginTop = `${scrollOffset}px`;
+            } else if (scrollOffset > windowHeight) {
+                frontContent.style.marginTop = `${windowHeight}px`;
+            }
+        }
+        
+        function frontContentOpacity() {
+            if (calculatedOpacityFrontContent >= 0) {
+                frontContent.style.opacity = calculatedOpacityFrontContent;
+            } else if (scrollOffset > windowHeight) {
+                frontContent.style.opacity = "0";
+            }
+        }
+        
+        function frontContentScale() {
+            if (calculatedScaleFrontContent >= 0.4) {
+                frontContent.style.transform = `scale(${calculatedScaleFrontContent})`;
+            } else if (scrollOffset > windowHeight) {
+                frontContent.style.transform = "scale(0.6)";
+            }
+        }
+        
+        function backgroundOpacity() {
+            if (calculatedOpacityBackground >= 0) {
+                backContent.style.opacity = calculatedOpacityBackground;
+            } else if (scrollOffset > windowHeight) {
+                backContent.style.opacity = "0";
+            }
+        }
+        
+        function runStep() {
+            scrollOffset = window.pageYOffset || document.documentElement.scrollTop;
             
-			runStep();
+            if (windowHeight > scrollOffset && scrollOffset >= 0) {
+                calculatedTranslateHeader = (scrollOffset / windowHeight) * 650;
+                calculatedOpacityFrontContent = 1 - (scrollOffset / windowHeight) * 4.2;
+                calculatedScaleFrontContent = 1 - (scrollOffset / windowHeight) * 1.2;
+                calculatedOpacityBackground = 1 - (scrollOffset / windowHeight) * 1.4;
 
-		});
-		
-		runStep();
-		
-	}
-	
-	onScrollAnimating();    
-});
+                if (navigationButton) navigationButtonHide();
+                if (frontContent) {
+                    frontContentMargin();
+                    frontContentOpacity();
+                    frontContentScale();
+                }
+                if (backContent) backgroundOpacity();
+            }
+        }
+        
+        window.addEventListener('resize', function() {
+            if (hero) windowHeight = hero.offsetHeight;
+        });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const speedometer = document.querySelector('.speedometer-container');
+        window.addEventListener('scroll', runStep);
+        
+        runStep();
+    }
     
-    setTimeout(() => {
-        speedometer.style.opacity = 1;
-    }, 2000);
+    onScrollAnimating();
+
+    const speedometer = document.querySelector('.speedometer-container');
+    if (speedometer) {
+        setTimeout(() => {
+            speedometer.style.opacity = 1;
+        }, 2000);
+    }
 });
