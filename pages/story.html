@@ -1,78 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Our Story | Monzza Group</title>
-        <link rel="stylesheet" href="./css/tailwind-output.css">
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Monzza Group</title>
+    <link rel="stylesheet" href="../css/tailwind.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
 
-    <body class="bg-gray-50">
-        <!-- Mobile Navigation  -->
-        <div class="mobile-nav-hamburger">
-            <span class="hamburger-icon">
-                <i class="fas fa-bars"></i>
-            </span>
-        </div>
-        
-        <div class="mobile-nav-overlay">
-            <div class="mobile-nav-content">
-                <button class="mobile-nav-close">&times;</button>
-                <nav>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- Mobile Navigation  -->
-
-
-        <!-- PRELOADER -->
-        <div class="preloader">
-            
-            
-            <!-- SPINNER -->
-            <div class="spinner">
-            
-            <div class="bounce-1"></div>
-            <div class="bounce-2"></div>
-            <div class="bounce-3"></div>
-            
-            </div>
-            <!-- /SPINNER -->
-            
-            
-        </div>
-        <!-- /PRELOADER -->
-
-        <!-- NAVIGATION BUTTON -->
-        <div class="navigation-button">
-
-            <a href="../index.html"><p>Back</p></a>
-
-        </div>
-        <!-- /NAVIGATION BUTTON -->
-
+<body class="font-serif text-white bg-[#0c0c0c] sub-page">
     
-
-        <!-- FOOTER -->
-        <div class="footer">
-            <div class="footer-inner scroll-animated-from-bottom">
-                <p>© 2025 Monzza Group | Design by <a href="https://github.com/yaeby">Adrian Copta</a></p>
-                <i class="fa fa-angle-double-up scroll-top" aria-hidden="true"></i>
-            </div>
+    <!-- PRELOADER -->
+    <div class="fixed inset-0 z-50 bg-[#111]">
+        <!-- SPINNER -->
+        <div class="absolute top-1/2 w-full transform -translate-y-1/2 text-center opacity-100">
+            <div class="inline-block w-4 h-4 mx-1.5 rounded-full bg-white animate-bounce" style="animation-delay: -0.32s;"></div>
+            <div class="inline-block w-4 h-4 mx-1.5 rounded-full bg-white animate-bounce" style="animation-delay: -0.16s;"></div>
+            <div class="inline-block w-4 h-4 mx-1.5 rounded-full bg-white animate-bounce"></div>
         </div>
-        <!-- FOOTER -->
+        <!-- /SPINNER -->
+    </div>
+    <!-- /PRELOADER -->
+    
+    <!-- NAVIGATION BUTTON -->
+    <div class="fixed top-[10%] right-0 z-10 transform -translate-y-1/2 cursor-pointer hidden md:block">
+        <a href="../index.html">
+            <p class="text-2xl font-normal m-0 py-2 pl-7 pr-12 transition-all duration-150 tracking-tight text-[#111] bg-white rounded-l-full hover:pr-16">Back</p>
+        </a>
+    </div>
+    <!-- /NAVIGATION BUTTON -->
 
-        <!-- JAVASCRIPTS -->
-        <script src="https://unpkg.com/scrollreveal"></script>
-        <script type="text/javascript" src="../scripts/main.js"></script>
-    </body>
+    <!-- STORY -->
+    <div class="my-80 mx-0">
+        <div class="max-w-[900px] px-8 mx-auto">
+            <h1 class="text-10xl mb-6 font-bold transition-transform duration-1000 opacity-0 translate-y-10">Our Story</h1>
+            <h4 class="text-3xl mb-7 transition-transform duration-1000 opacity-0 translate-y-10">Masters of Automotive Imagery.</h4>
+            <p class="text-base leading-10 mb-6 transition-transform duration-1000 opacity-0 translate-y-10">
+                Our story begins in Chisinau, Moldova, where a group of passionate automotive photographers decided to create something unique. In the shadows, we capture what others miss—the raw power, the unfiltered speed, the essence of machines built for dominance. Monzza Group is not just a photography company; we are the unseen force behind the most captivating automotive visuals.
+            </p>
+            <p class="text-base leading-10 mb-6 transition-transform duration-1000 opacity-0 translate-y-10">
+                From high-stakes races to exclusive supercar unveilings, we document every moment with precision. Our lenses carve through the night, revealing the soul of the machine—its roar, its velocity, its defiance of limits. Some call it obsession. We call it art.
+            </p>
+        </div>
+    </div>
+    <!-- /STORY -->
+    
+    <!-- FOOTER -->
+    <div class="overflow-hidden py-40 px-0 text-center">
+        <div class="transition-transform duration-1000 opacity-0 translate-y-10">
+            <p class="text-sm inline-block m-0 mr-5 align-middle tracking-wider opacity-85">
+                © 2025 Monzza Group | Design by <a href="https://github.com/yaeby" class="font-bold text-white">Adrian Copta</a>
+            </p>
+            <i class="fa fa-angle-double-up text-2xl leading-10 inline-block w-10 align-middle text-[#111] bg-white rounded-full cursor-pointer"></i>
+        </div>
+    </div>
+    <!-- FOOTER -->
 
+    <!-- JAVASCRIPTS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const preloader = document.querySelector(".fixed.inset-0.z-50");
+            if (preloader) {
+                preloader.style.display = "none";
+            }
+            const elements = document.querySelectorAll(".transition-transform");
+            elements.forEach(element => {
+                element.classList.remove("opacity-0", "translate-y-10");
+            });
+        });
+    </script>
+
+</body>
 </html>
-
-`
