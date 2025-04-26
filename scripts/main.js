@@ -169,10 +169,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     onScrollAnimating();
 
-    const speedometer = document.querySelector('.speedometer-container');
-    if (speedometer) {
-        setTimeout(() => {
-            speedometer.style.opacity = 1;
-        }, 2000);
-    }
 });
